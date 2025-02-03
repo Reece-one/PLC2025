@@ -1,18 +1,9 @@
--- Define applicatorFunc to compute sum or average
-applicatorFunc :: [Int] -> Char -> Float
-applicatorFunc inpFunc s = 
-    if s == 's' 
-        then fromIntegral (sum inpFunc) 
-        else fromIntegral (sum inpFunc) / 5
+--create inpFunc
+inpFunc a b = [a..b] 
 
-main :: IO ()
+--Define applicatorFunc
+applicatorFunc inpFunc a b s = if s=='s' then sum (inpFunc a b) else (sum (inpFunc a b))/ (b - a + 1)
+
 main = do
-    putStrLn "Enter the starting number (a):"
-    a <- readLn
-    putStrLn "Enter the ending number (b):"
-    b <- readLn
-    putStrLn "Enter 's' for sum or 'a' for average:"
-    choice <- getChar
-    let inpFunc = [a..b]
-    let result = applicatorFunc inpFunc choice
-    putStrLn ("\nResult = " ++ show result)
+    let result = applicatorFunc inpFunc 1 20 'a' --Call applicatorFunc with inpFunc and 'a' as args
+    putStrLn("sum = " ++ show result)
